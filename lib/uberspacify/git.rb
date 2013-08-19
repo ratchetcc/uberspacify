@@ -5,10 +5,12 @@ Capistrano::Configuration.instance.load do
 
     desc "Pull the latest version from git"
     task :pull do
-      #run "cd #{fetch :application_home}" do |channel, stream, data|
-      #  channel.send_data("password\n")
-      #end
-      run "cd #{fetch :application_home} && git pull origin #{fetch :branch}"
+      pull_cmd = "cd #{fetch :application_home} && git pull origin #{fetch :branch}"
+      
+      run pull_cmd do |channel, stream, out|
+        channel.send_data("#{fetch :scm_password}") if out =~ /Password:/
+      end
+      #run "cd #{fetch :application_home} && git pull origin #{fetch :branch}"
     end
 
   end
