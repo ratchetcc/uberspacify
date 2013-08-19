@@ -29,8 +29,8 @@ Capistrano::Configuration.instance.load do
     
     desc "rake assets:precompile"
     task :precompile do
-      run "cd #{fetch :application_home}"
-      run "bundle exec rake assets:precompile RAILS_ENV=#{fetch :environment}"
+      #run "cd #{fetch :application_home}"
+      run "cd #{fetch :application_home} && bundle exec rake assets:precompile RAILS_ENV=#{fetch :environment}"
     end
     
   end
