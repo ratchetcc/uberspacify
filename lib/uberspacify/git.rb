@@ -9,7 +9,7 @@ Capistrano::Configuration.instance.load do
       
       run pull_cmd do |channel, stream, out|
         puts out
-        channel.send_data("#{fetch :scm_password}") if out =~ /Password:/
+        channel.send_data("#{fetch :scm_password}" + '\n') if out =~ /Password:/
       end
       #run "cd #{fetch :application_home} && git pull origin #{fetch :branch}"
     end
