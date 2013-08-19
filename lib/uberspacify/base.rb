@@ -87,20 +87,4 @@ RewriteRule ^(.*)$ http://localhost:#{fetch :passenger_port}/$1 [P]
     end
   end
 
-  namespace :deploy do
-    task :start do
-      run "svc -u #{fetch :home}/service/rails-#{fetch :application}"
-    end
-    task :stop do
-      run "svc -d #{fetch :home}/service/rails-#{fetch :application}"
-    end
-    task :restart do
-      run "svc -du #{fetch :home}/service/rails-#{fetch :application}"
-    end
-
-    task :symlink_shared do
-      run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
-    end
-  end
-
 end
