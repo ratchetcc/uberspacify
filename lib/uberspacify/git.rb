@@ -5,7 +5,7 @@ Capistrano::Configuration.instance.load do
     
     desc "Pull the latest version from git"
     task :pull do
-      run "git pull origin #{fetch :repo_branch}"
+      run "cd #{fetch :application_home} && git pull origin #{fetch :repo_branch}"
     end
     
   end
