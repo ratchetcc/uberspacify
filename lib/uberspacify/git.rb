@@ -8,7 +8,7 @@ Capistrano::Configuration.instance.load do
       #run "cd #{fetch :application_home}" do |channel, stream, data|
       #  channel.send_data("password\n")
       #end
-      run "cd #{fetch :application_home} && git pull origin #{fetch :repo_branch}", options={:data => 'K0naBeach'}
+      run "cd #{fetch :application_home} && git pull origin #{fetch :repo_branch}"
     end
 
   end
