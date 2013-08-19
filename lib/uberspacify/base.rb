@@ -1,5 +1,3 @@
-require 'capistrano_colors'
-require 'rvm/capistrano'
 require 'bundler/capistrano'
 
 def abort_red(msg)
@@ -14,7 +12,7 @@ Capistrano::Configuration.instance.load do
 
   # optional variables
   _cset(:domain)                { nil }
-  _cset(:passenger_port)        { rand(61000-32768+1)+32768 } # random ephemeral port
+  _cset(:thin_port)        { rand(61000-32768+1)+32768 } # random ephemeral port
 
   _cset(:deploy_via)            { :remote_cache }
   _cset(:git_enable_submodules) { 1 }
