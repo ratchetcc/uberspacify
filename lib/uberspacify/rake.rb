@@ -26,6 +26,9 @@ Capistrano::Configuration.instance.load do
     desc "rake assets:precompile"
     task :precompile do
       run "cd #{fetch :application_home} && bundle exec rake assets:precompile RAILS_ENV=#{fetch :environment}"
+      
+      # create symbolic links
+      run "cd #{fetch :application_home} && ln -s public/assets assets"
     end
     
   end

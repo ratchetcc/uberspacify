@@ -5,7 +5,7 @@ Capistrano::Configuration.instance.load do
     desc "Tasks to prepare a uberspace for deployment"
     task :default do
       ruby
-      apache
+      reverse_proxy
       daemon_tools
     end
     
@@ -19,8 +19,8 @@ Capistrano::Configuration.instance.load do
       
     end
     
-    desc "Setup Apache reverse-proxy & thin"
-    task :apache do
+    desc "Setup Apache reverse-proxy & thin script"
+    task :reverse_proxy do
       
     end
     
