@@ -17,6 +17,20 @@ Capistrano::Configuration.instance.load do
    
     end
     
+    desc "Push any changes back to origin"
+    task :push do
+      git_cmd = "cd #{fetch :application_home} && git push origin #{fetch :branch}"
+      
+      run git_cmd do |channel, stream, out|
+        if out =~ /Password:/
+          channel.send_data("#{fetch :scm_password}\n")
+        else
+          puts out
+        end
+      end
+   
+    end
+    
     desc "Clone the repository into web_root"
     task :setup do
       
@@ -34,6 +48,9 @@ Capistrano::Configuration.instance.load do
       # move repo to html
       run "rm -rf #{fetch :application_home}"
       run "mv #{fetch :application} #{fetch :application_home}"
+      
+      # switch branch
+      git_cmd = "cd #{fetch :application_home} && git checkout -b #{fetch :branch}"
       
     end
     
