@@ -21,14 +21,7 @@ Capistrano::Configuration.instance.load do
     
     desc "Setup Apache reverse-proxy & thin script"
     task :reverse_proxy do      
-      htaccess = <<-EOF
-RewriteEngine On
-RewriteBase /
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^(.*)$ http://localhost:{fetch :daemon_port}/$1 [P]
-      EOF
-      
-      puts htaccess
+
     end
     
   end
