@@ -20,7 +20,7 @@ Capistrano::Configuration.instance.load do
     end
     
     desc "Setup Apache reverse-proxy & thin script"
-    task :reverse_proxy do
+    task :reverse_proxy do      
       htaccess = <<-EOF
 RewriteEngine On
 RewriteBase /
