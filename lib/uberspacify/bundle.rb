@@ -5,7 +5,7 @@ Capistrano::Configuration.instance.load do
     
     desc "bundle install"
     task :install do
-      run "cd #{fetch :application_home} && bundle install RAILS_ENV=#{fetch :environment}"
+      run "cd #{fetch :application_home} && bundle install"
     end
     
   end
