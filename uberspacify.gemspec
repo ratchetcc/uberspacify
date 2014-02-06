@@ -17,7 +17,7 @@ Gem::Specification.new do |gem|
   gem.version       = Uberspacify::VERSION
   
   # dependencies for capistrano
-  gem.add_dependency 'capistrano',        '>=2.12.0'
+  gem.add_dependency 'capistrano',        '2.12.0'
   
   # dependency for mysql on Uberspace
   gem.add_dependency 'mysql2',            '>=0.3.11'
