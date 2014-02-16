@@ -31,5 +31,34 @@ Capistrano::Configuration.instance.load do
       run "cd #{fetch :application_home} && ln -s public/assets assets"
     end
     
+    desc "create the database.yml file"
+    task :create_yml do
+      
+      my_cnf = capture('cat ~/.my.cnf')
+      
+      my_cnf.match(/^user=(\w+)/)
+      mysql_user = $1
+      my_cnf.match(/^password=(\w+)/)
+      mysql_pwd = $1
+
+      database_yml = <<-EOF
+production:
+  adapter: mysql2
+  encoding: utf8
+  database: #{mysql_user}
+  pool: 15
+  username: #{mysql_user}
+  password: #{mysql_pwd}
+  host: localhost
+  socket: /var/lib/mysql/mysql.sock
+  timeout: 10000
+
+EOF
+
+      # upload the database.yml file
+      put database_yml, "/home/#{user}/html/config/database.yml"
+    
+    end
+    
   end
 end
