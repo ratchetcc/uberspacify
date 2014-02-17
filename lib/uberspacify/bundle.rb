@@ -1,3 +1,4 @@
+
 Capistrano::Configuration.instance.load do
   
   desc "Common bundle tasks"
@@ -5,7 +6,12 @@ Capistrano::Configuration.instance.load do
     
     desc "bundle install"
     task :install do
-      run "cd #{fetch :application_home} && bundle install"
+      run "cd #{fetch :application_home} && bundle install --path ~/.gem"
+    end
+    
+    desc "bundle update"
+    task :update do
+      run "cd #{fetch :application_home} && bundle update --path ~/.gem"
     end
     
   end

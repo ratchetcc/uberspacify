@@ -1,9 +1,10 @@
+
 Capistrano::Configuration.instance.load do
 
   desc "Git tasks"
   namespace :git do
 
-    desc "Pull the latest version from git"
+    desc "Pull the latest version from git (github/bitbucket etc)"
     task :pull do
       git_cmd = "cd #{fetch :application_home} && git pull origin #{fetch :branch}"
       
@@ -17,7 +18,7 @@ Capistrano::Configuration.instance.load do
    
     end
     
-    desc "Push any changes back to origin"
+    desc "Push any changes back to origin (github/bitbucket etc)"
     task :push do
       git_cmd = "cd #{fetch :application_home} && git push origin #{fetch :branch}"
       
@@ -30,29 +31,6 @@ Capistrano::Configuration.instance.load do
       end
    
     end
-    
-    desc "Clone the repository into web_root"
-    task :setup do
-      
-      # clone the repo first
-      git_cmd = "git clone #{fetch :repository}"
-      
-      run git_cmd do |channel, stream, out|
-        if out =~ /Password:/
-          channel.send_data("#{fetch :scm_password}\n")
-        else
-          puts out
-        end
-      end
-      
-      # move repo to html
-      run "rm -rf #{fetch :application_home}"
-      run "mv #{fetch :application} #{fetch :application_home}"
-      
-      # switch branch
-      git_cmd = "cd #{fetch :application_home} && git checkout -b #{fetch :branch}"
-      
-    end
-    
+        
   end
 end
