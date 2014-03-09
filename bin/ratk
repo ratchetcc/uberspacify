@@ -1,3 +1,7 @@
 #!/usr/bin/env ruby
-require 'capistrano/all'
-Capistrano::Application.new.run
+
+require 'rubygems'
+require 'rknive/script'
+
+# execute capistrano
+RatchetKnive::Script.run
