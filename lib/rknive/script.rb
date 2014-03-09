@@ -13,8 +13,7 @@ module RatchetKnive
       prog = File.basename($0)
       
       # execute Capistrano with the new set of command line options
-      puts 'Running #{prog}'
-      #Capistrano::CLI.parse(ARGC).execute!
+      Capistrano::CLI.parse(ARGC).execute!
       
     end
       
