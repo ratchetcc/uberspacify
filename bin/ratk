@@ -1,7 +1,0 @@
-#!/usr/bin/env ruby
-
-require 'rubygems'
-require 'rknive/script'
-
-# execute capistrano
-RatchetKnive::Script.run
